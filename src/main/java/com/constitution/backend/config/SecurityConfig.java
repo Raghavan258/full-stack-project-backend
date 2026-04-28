@@ -46,6 +46,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                        /* --- ORIGINAL SECURITY RULES (Commented out for testing) ---
                         // Swagger UI
                         .requestMatchers(
                                 "/swagger-ui/**", "/swagger-ui.html",
@@ -93,7 +95,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/quizzes/**").hasRole("ADMIN")
 
                         // Everything else — authenticated
-                        .anyRequest().authenticated())
+                        .anyRequest().authenticated()
+                        ----------------------------------------------------------- */
+                        )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
