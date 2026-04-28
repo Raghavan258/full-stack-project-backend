@@ -1,7 +1,7 @@
 package com.constitution.backend.exception;
 
 import com.constitution.backend.dto.ApiResponse;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.*;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,8 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-@Slf4j
 public class GlobalExceptionHandler {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /** Handles our custom ApiException */
     @ExceptionHandler(ApiException.class)
