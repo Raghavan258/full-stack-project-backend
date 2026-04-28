@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/favicon.ico").permitAll()
                         .anyRequest().permitAll()
                         /* --- ORIGINAL SECURITY RULES (Commented out for testing) ---
                         // Swagger UI
@@ -55,7 +56,7 @@ public class SecurityConfig {
                         .permitAll()
 
                         // Public auth endpoints
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/favicon.ico").permitAll()
 
                         // Public read-only
                         .requestMatchers(HttpMethod.GET, "/api/articles/**").permitAll()
